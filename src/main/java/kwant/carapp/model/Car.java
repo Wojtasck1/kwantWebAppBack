@@ -1,11 +1,16 @@
 package kwant.carapp.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +43,10 @@ public class Car {
 	
 	@Column(name = "usersId")
 	private String usersId;
+	
+	@OneToMany(targetEntity=Note.class, cascade=CascadeType.ALL,
+			mappedBy = "noteId" )
+	private List<Note> noteList = new ArrayList<Note>(); 
 	
 	public Car(){} 
 	
@@ -107,6 +116,11 @@ public class Car {
 		this.usersId = usersId;
 	}
 	
+	public List<Note> getNoteList() {
+		return noteList;
+	}
 
-	
+	public void setNoteList(List<Note> noteList) {
+		this.noteList = noteList;
+	}
 }

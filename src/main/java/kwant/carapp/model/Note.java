@@ -6,8 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Note {
@@ -16,8 +20,8 @@ public class Note {
 	@GeneratedValue
 	private Long noteId;
 	
-	@Column(name = "cardId")
-	private Long carId;
+//	@Column(name = "cardId")
+//	private Long carId;
 	
 	@Column(name = "course")
 	private String course;
@@ -25,9 +29,22 @@ public class Note {
 	@Column(name = "description")
 	private String description;
 	
+	@ManyToOne
+	@JoinColumn(name="cardId")
+	private Car car;
+	
 	@Column(name = "createdate" ,columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdate;
+	 
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
 
 	public Long getNoteId() { 
 		return noteId;
@@ -37,13 +54,13 @@ public class Note {
 		this.noteId = noteId;
 	}
 
-	public Long getCarId() {
-		return carId;
-	}
-
-	public void setCarId(Long carId) {
-		this.carId = carId;
-	}
+//	public Long getCarId() {
+//		return carId;
+//	}
+//
+//	public void setCarId(Long carId) {
+//		this.carId = carId;
+//	}
 
 	public String getCourse() {
 		return course;
