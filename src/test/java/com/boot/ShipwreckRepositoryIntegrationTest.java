@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.boot.model.Shipwreck;
-import com.boot.repository.ShipwreckRepository;
+import kwant.carapp.App;
+import kwant.carapp.model.Shipwreck;
+import kwant.carapp.repository.ShipwreckRepository;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

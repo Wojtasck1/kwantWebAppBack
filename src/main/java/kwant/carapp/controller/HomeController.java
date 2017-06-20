@@ -1,4 +1,4 @@
-package com.boot.controller;
+package kwant.carapp.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

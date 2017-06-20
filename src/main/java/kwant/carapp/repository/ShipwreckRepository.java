@@ -1,8 +1,8 @@
-package com.boot.repository;
+package kwant.carapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.boot.model.Shipwreck;
+import kwant.carapp.model.Shipwreck;
 
 public interface ShipwreckRepository extends JpaRepository<Shipwreck, Long> {
 

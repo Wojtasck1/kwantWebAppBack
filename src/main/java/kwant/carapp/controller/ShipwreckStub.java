@@ -1,11 +1,11 @@
-package com.boot.controller;
+package kwant.carapp.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.boot.model.Shipwreck;
+import kwant.carapp.model.Shipwreck;
 
 public class ShipwreckStub {
 	private static Map<Long, Shipwreck> wrecks = new HashMap<Long, Shipwreck>();

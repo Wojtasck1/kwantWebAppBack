@@ -11,9 +11,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
-import com.boot.controller.ShipwreckController;
-import com.boot.model.Shipwreck;
-import com.boot.repository.ShipwreckRepository;
+import kwant.carapp.controller.ShipwreckController;
+import kwant.carapp.model.Shipwreck;
+import kwant.carapp.repository.ShipwreckRepository;
 
 public class ShipwreckControllerTest {
 	@InjectMocks

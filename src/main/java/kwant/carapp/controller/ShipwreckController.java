@@ -1,4 +1,4 @@
-package com.boot.controller;
+package kwant.carapp.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.boot.model.Shipwreck;
-import com.boot.repository.ShipwreckRepository;
+import kwant.carapp.model.Shipwreck;
+import kwant.carapp.repository.ShipwreckRepository;
 
 @RestController
 @RequestMapping("api/v1/")

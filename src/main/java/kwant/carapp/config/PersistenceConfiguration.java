@@ -1,4 +1,4 @@
-package com.boot.config;
+package kwant.carapp.config;
 
 import javax.sql.DataSource;
 
