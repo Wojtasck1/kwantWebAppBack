@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ManyToAny;
 
 @Entity
+@Table(name = "notes")
 public class Note {
 	
 	@Id
@@ -21,7 +23,7 @@ public class Note {
 	private Long noteId;
 	
 //	@Column(name = "cardId")
-//	private Long carId;
+//	private Long carId; 
 	
 	@Column(name = "course")
 	private String course;
@@ -30,7 +32,7 @@ public class Note {
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name="cardId")
+	@JoinColumn(name="card_Id")
 	private Car car;
 	
 	@Column(name = "createdate" ,columnDefinition="DATETIME")

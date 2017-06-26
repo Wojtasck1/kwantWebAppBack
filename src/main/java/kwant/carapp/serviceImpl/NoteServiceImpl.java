@@ -39,5 +39,4 @@ public class NoteServiceImpl implements NoteService {
 	public Note update(Note note) {
 		return noteRepository.saveAndFlush(note);
 	}
-	
 }
