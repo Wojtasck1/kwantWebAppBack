@@ -15,21 +15,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import kwant.carapp.util.ExpirationUtil;
-
 
 @Entity
 @Table(name = "cars") 
 public class Car {
 	
-	@Autowired
-	ExpirationUtil expirationUtil;
-	
 	@Id
 	@GeneratedValue
-	private Long car_Id;
+	private Long carId;
 	
 	@Column(name = "plates")
 	private String plates;
@@ -48,8 +41,8 @@ public class Car {
 	@Column(name = "description")
 	private String description; 
 	
-	@Column(name = "users_Id")
-	private String users_Id;
+	@Column(name = "usersId")
+	private String usersId;
 	
 	@OneToMany(targetEntity=Note.class, cascade=CascadeType.ALL,
 			mappedBy = "noteId" )
@@ -57,22 +50,22 @@ public class Car {
 	
 	public Car(){} 
 	
-	public Car(Long car_Id,Date overview,Date insurance, String course , String description, String user_Id){
+	public Car(Long carId,Date overview,Date insurance, String course , String description, String userId){
 		
-		this.car_Id = car_Id;
+		this.carId = carId;
 		this.overview = overview;
 		this.insurance = insurance;
 		this.course = course;
 		this.description = description;
-		this.users_Id = user_Id;
+		this.usersId = userId;
 	}
 
 	public Long getCarId() {
-		return car_Id;
+		return carId;
 	}
 
 	public void setCarId(Long carId) {
-		this.car_Id = carId;
+		this.carId = carId;
 	}
 
 	public String getPlates() {
@@ -96,7 +89,6 @@ public class Car {
 	}
  
 	public void setInsurance(Date insurance) {
-	
 		this.insurance = insurance;
 	}
 	
@@ -105,7 +97,6 @@ public class Car {
 	}
 
 	public void setCourse(String course) {
-		expirationUtil.corseCheck(this.course, course);
 		this.course = course;
 	}
 
@@ -118,13 +109,13 @@ public class Car {
 	}
 
 	public String getUsersId() {
-		return users_Id;
+		return usersId;
 	}
 
 	public void setUsersId(String usersId) {
-		this.users_Id = usersId;
+		this.usersId = usersId;
 	}
-	 
+	
 	public List<Note> getNoteList() {
 		return noteList;
 	}

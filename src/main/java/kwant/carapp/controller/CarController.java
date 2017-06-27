@@ -20,7 +20,7 @@ public class CarController {
 	@Autowired
 	CarService carService;
 	
-	@RequestMapping(value = "car", method = RequestMethod.GET , produces = "application/json")
+	@RequestMapping(value = "car", method = RequestMethod.GET)
 	public List<Car> list() {
 		return carService.findAll();
 	}

@@ -3,6 +3,8 @@ package kwant.carapp.scheduler;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 //import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import kwant.carapp.model.Car;
 import kwant.carapp.service.CarService;
+import kwant.carapp.service.MailService;
 //import kwant.carapp.service.MailService;
 import kwant.carapp.util.ExpirationUtil;
 
@@ -23,8 +26,8 @@ public class ExpirationDate {
 	@Autowired
 	private ExpirationUtil expirationUtil;
 	
-//	@Autowired
-//	private MailService mailService;
+	@Autowired
+	private MailService mailService;
 	
 	@Value("${info.dni.do.konca.przegladu}")
 	Integer daysToOverviewEnd;
@@ -46,6 +49,12 @@ public class ExpirationDate {
 		carsWitchExpiredOverview = expirationUtil.getCarsWitchExpireOverviev(daysToOverviewEnd);
 		for(Car car:carsWitchExpiredOverview){
 			System.out.println(car.getPlates());
+			try {
+				mailService.sendMail(car);
+			} catch (MessagingException e) {
+				System.out.println("Error mail dos not send");
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -56,6 +65,14 @@ public class ExpirationDate {
 		for(Car car:carsWitchExpiredInsurence){
 	//		mailService.sendMail(car);
 			System.out.println(car.getPlates()); 
+			System.out.println(car.getPlates());
+			try {
+				mailService.sendMail(car);
+				System.out.println("udało się wysłać maila");
+			} catch (MessagingException e) {
+				System.out.println("Error mail dos not send");
+				e.printStackTrace();
+			}
 		} 
 	}
 
