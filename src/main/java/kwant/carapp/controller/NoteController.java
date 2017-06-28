@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kwant.carapp.model.Car;
 import kwant.carapp.model.Note;
 import kwant.carapp.service.NoteService;
-import kwant.carapp.serviceImpl.NoteServiceImpl;
 
 @RestController
 @RequestMapping("api/v1/")

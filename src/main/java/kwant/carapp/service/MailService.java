@@ -6,6 +6,6 @@ import kwant.carapp.model.Car;
 
 public interface MailService {
 	
-	public void sendMail(Car car) throws MessagingException;
+	public void sendMail(Car car ,String message) throws MessagingException;
 
 }

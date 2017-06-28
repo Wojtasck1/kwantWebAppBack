@@ -2,7 +2,6 @@ package kwant.carapp.service;
 
 import java.util.List;
 
-import kwant.carapp.model.Note;
 import kwant.carapp.model.User;
 
 public interface UserService {

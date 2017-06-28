@@ -11,14 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 public class Note {
 	
 	@Id
 	@GeneratedValue
-	private Long noteId;
+	private Long noteId; 
 	
 //	@Column(name = "cardId")
 //	private Long carId;
@@ -80,7 +78,7 @@ public class Note {
 
 	public Date getCreatedate() {
 		return createdate;
-	}
+	} 
 
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;

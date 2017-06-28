@@ -78,7 +78,7 @@ public class Shipwreck {
 		this.latitude = latitude;
 	}
 
-	public Double getLongitude() {
+	public Double getLongitude() { 
 		return longitude;
 	}
 

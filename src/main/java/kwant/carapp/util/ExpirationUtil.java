@@ -1,6 +1,5 @@
 package kwant.carapp.util;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,8 +7,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +29,7 @@ public class ExpirationUtil {
 		allCars = carService.findAll(); 
 
 		for (Car car : allCars) {
-			if (car.getInsurance().after(getDateBackwords(days)) && car.getInsurance().before(getDateBackwords(0))) {
+			if (car.getInsurance().after(getDateBackwords(days)) && car.getInsurance().before(getDateBackwords(0)) && !car.isUserAverOfInsuranceExpiration()) {
 				carsWitchExpiredInsurance.add(car);
 			}
 		}
@@ -44,9 +41,8 @@ public class ExpirationUtil {
 		allCars = carService.findAll();
 
 		for (Car car : allCars) {
-			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(0))) {
+			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(0)) && !car.isUserAverOfOverviewExpiration()) {
 				carsWitchExpiredOverview.add(car);
-				System.err.println(car.getPlates());
 			}
 		}
 		return carsWitchExpiredOverview;
@@ -54,10 +50,10 @@ public class ExpirationUtil {
  
 	public List<Car> getCarsWitchOldOil(Integer days) {
 		List<Car> carsWitchOldOil = new ArrayList<Car>();
-		allCars = carService.findAll();
+		allCars = carService.findAll(); 
 
 		for (Car car : allCars) {
-			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(0))) {
+			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(-2)) && !car.isUserAverOfOilChange()) {
 				carsWitchOldOil.add(car);
 			}
 		}
