@@ -39,7 +39,6 @@ public class ExpirationUtil {
 	public List<Car> getCarsWitchExpireOverviev(Integer days) {
 		List<Car> carsWitchExpiredOverview = new ArrayList<Car>();
 		allCars = carService.findAll();
-
 		for (Car car : allCars) {
 			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(0)) && !car.isUserAverOfOverviewExpiration()) {
 				carsWitchExpiredOverview.add(car);
@@ -48,12 +47,11 @@ public class ExpirationUtil {
 		return carsWitchExpiredOverview;
 	}
  
-	public List<Car> getCarsWitchOldOil(Integer days) {
+	public List<Car> getCarsWitchOldOil(Integer distanceToOilChange) {
 		List<Car> carsWitchOldOil = new ArrayList<Car>();
 		allCars = carService.findAll(); 
-
 		for (Car car : allCars) {
-			if (car.getOverview().after(getDateBackwords(days)) && car.getOverview().before(getDateBackwords(-2)) && !car.isUserAverOfOilChange()) {
+			if ((car.getCourse() - car.getLastOilChange() > distanceToOilChange) && !car.isUserAverOfOilChange()) {
 				carsWitchOldOil.add(car);
 			}
 		}
@@ -68,9 +66,4 @@ public class ExpirationUtil {
 		return cal.getTime();
 	}
 	
-	public void corseCheck(String oldCorse , String newCorse){ 
-//		if (oldCorse >>= angle =<< newCorse){
-//			
-//		}
-	}
 }
