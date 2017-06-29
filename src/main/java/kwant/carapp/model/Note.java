@@ -8,14 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "notes")
 public class Note {
 	
 	@Id
 	@GeneratedValue
+	@Column(name = "notesId")
 	private Long noteId; 
 	
 //	@Column(name = "cardId")

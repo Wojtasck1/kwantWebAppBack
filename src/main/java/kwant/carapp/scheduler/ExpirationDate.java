@@ -12,7 +12,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import kwant.carapp.model.Car;
+import kwant.carapp.model.User;
+import kwant.carapp.repository.CarRepository;
+import kwant.carapp.service.CarService;
 import kwant.carapp.service.MailService;
+import kwant.carapp.service.UserService;
 import kwant.carapp.util.ExpirationUtil;
 
 @Component
@@ -23,7 +27,13 @@ public class ExpirationDate {
 	private ExpirationUtil expirationUtil;
 	
 	@Autowired
+	CarRepository carRepository;
+	
+	@Autowired
 	private MailService mailService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Value("${info.dni.do.konca.przegladu}")
 	Integer daysToOverviewEnd;
@@ -38,9 +48,12 @@ public class ExpirationDate {
 
 	private List<Car> carsToOilCheck = new ArrayList<Car>();
 	
-	private String messageCreator(Car car, String message){
+	
+	
+	private String messageCreator(Car car, String message, String data){
+		User user = userService.findUser(car.getUsersId());
 		return"W samochód o numerze rejestracyjnym :" + car.getPlates() + "/n"
-				+ " zakończy się " + message + "w ciągu najbliższych 7 dni";
+				+ " zakończy się " + message + "w ciągu najbliższych 7 dni dokładna data:" + data + "użytkownik samochodu:" + user.getName() + " " + user.getSurname();
 	}
 
 	@Scheduled(cron = "*/2 * * * * *")
@@ -49,10 +62,11 @@ public class ExpirationDate {
 		carsWitchExpiredOverview = expirationUtil.getCarsWitchExpireOverviev(daysToOverviewEnd);
 		for(Car car:carsWitchExpiredOverview){
 			try {
-				mailService.sendMail(car, messageCreator(car , "przegląd"));
+				mailService.sendMail(car, messageCreator(car , "przegląd" , car.getOverview().toString()));
 				car.setUserAverOfOverviewExpiration(true);
+				carRepository.saveAndFlush(car);
+				System.out.println(" wysłałem maila ");
 			} catch (MessagingException e) {
-				System.out.println("Error mail dos not send");
 				e.printStackTrace();
 			}
 		}
@@ -64,10 +78,10 @@ public class ExpirationDate {
 		carsWitchExpiredInsurence = expirationUtil.getCarsWitchExpireInsurance(daysToInsuranceEnd);
 		for(Car car:carsWitchExpiredInsurence){
 			try {
-				mailService.sendMail(car, messageCreator(car , "ubezpieczenie"));
-				car.setUserAverOfOverviewExpiration(true);
+				mailService.sendMail(car, messageCreator(car , "ubezpieczenie" , car.getInsurance().toString()));
+				car.setUserAverOfInsuranceExpiration(true);
+				carRepository.saveAndFlush(car);
 			} catch (MessagingException e) { 
-				System.out.println("Error mail dos not send");
 				e.printStackTrace();
 			}
 		} 
