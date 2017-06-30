@@ -55,14 +55,6 @@ public class Note {
 		this.noteId = noteId;
 	}
 
-//	public Long getCarId() {
-//		return carId;
-//	}
-//
-//	public void setCarId(Long carId) {
-//		this.carId = carId;
-//	}
-
 	public String getCourse() {
 		return course;
 	}

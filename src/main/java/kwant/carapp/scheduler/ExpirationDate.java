@@ -40,7 +40,7 @@ public class ExpirationDate {
 	Integer daysToInsuranceEnd;
 	@Value("${info.termin.kontroli.przebiegu}")
 	Integer daysToOilCheck;
-	@Value("${info.dystans.do.wymiany.oleju")
+	@Value("${info.przebieg.do.kontroli}") 
 	Integer distanceToOilChange;
 
 	private List<Car> carsWitchExpiredOverview = new ArrayList<Car>();
@@ -58,7 +58,6 @@ public class ExpirationDate {
 
 	@Scheduled(cron = "*/2 * * * * *")
 	private void triggerOverviewDateCheck() {
-		System.out.println("-------------- samochody z wychodzącym przeglądem ----------");
 		carsWitchExpiredOverview = expirationUtil.getCarsWitchExpireOverviev(daysToOverviewEnd);
 		for (Car car : carsWitchExpiredOverview) {
 			try {
@@ -67,13 +66,12 @@ public class ExpirationDate {
 				carRepository.saveAndFlush(car);
 			} catch (MessagingException e) {
 				e.printStackTrace();
-			}
+			} 
 		}
 	}
 
 	@Scheduled(cron = "*/2 * * * * *")
 	private void triggerCourseCheck() {
-		System.out.println("-------------- samochody z wychodzącym ubezpieczeniem ----------");
 		carsWitchExpiredInsurence = expirationUtil.getCarsWitchExpireInsurance(daysToInsuranceEnd);
 		for (Car car : carsWitchExpiredInsurence) {
 			try {
@@ -88,7 +86,6 @@ public class ExpirationDate {
 
 	@Scheduled(cron = "*/2 * * * * *")
 	private void triggerOilCheck() {
-		System.out.println("-------------- samochody w którym nalerzywymienić olej ----------");
 		carsToOilCheck = expirationUtil.getCarsWitchOldOil(distanceToOilChange);
 		for (Car car : carsToOilCheck) {
 			try {
