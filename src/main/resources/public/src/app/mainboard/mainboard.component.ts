@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Ng2SmartTableModule , LocalDataSource } from 'ng2-smart-table';
 import { HttpCarService } from '../http/http-car.service';
+import { Car } from '../domain/car';
 
 @Component({
   selector: 'app-mainboard',
@@ -19,11 +20,11 @@ settings = {
     add: {
       confirmCreate: true,
     }, 
-    edit: {
+    edit: { 
       confirmSave: true,
     },
     columns: {
-      state: {
+      plates: {
         title: 'Tablica Rej',
         filter: true
       },
@@ -31,28 +32,58 @@ settings = {
         title: 'Użytkownik',
         filter: true
       },
-      contact: {
+      course: {
         title: 'Bieżący przebieg',
         filter: true
       },
-      location: {
+      insurance: {
         title: 'Termin oc',
         filter: true
       },
-      description: {
+      overview: {
         title: 'Termin przeglądu',
         filter: true
       },
     }, 
   }; 
 
-  constructor( private _httpCarService : HttpCarService) { 
+  //source: Car[];
 
-  } 
+//source: LocalDataSource;  
+ 
+cars: Car[];
+errorString: string;  
+
+public getCars(){
+  this._httpCarService.getCars().subscribe(
+    cars => this.cars = cars,
+    error => this.errorString = <any> error
+  );
+}
+
+  source: LocalDataSource;
+
+  constructor( protected _httpCarService : HttpCarService) { 
+    this.getCars();
+    console.log(this.cars); 
+
+    
+    // this.source = new LocalDataSource();
+
+    //     this._httpCarService.getCars();
+     //  console.log(this._httpCarService.getCars()); 
+         
+      //   .then((data) => {
+      // this.sour      e.load(data);
+   // }
+    // ); 
+  }
 
   ngOnInit() {
-    this._httpCarService.fetchCars;
+    // this.source = new LocalDataSource(this.data); 
+    // console.log(this.data);
   }
+  
   onDeleteConfirm(event) {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
