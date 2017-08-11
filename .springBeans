@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:kwant.carapp.App</config>
+		<config>java:com.kwant.App</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
