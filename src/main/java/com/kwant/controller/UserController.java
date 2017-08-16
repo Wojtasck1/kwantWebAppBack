@@ -20,29 +20,29 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
-	@RequestMapping(value = "user", method = RequestMethod.GET)
+	@RequestMapping(value = "users", method = RequestMethod.GET)
 	public List<User> list() {
 		return userRepository.findAll();
 	}
  
-	@RequestMapping(value = "user", method = RequestMethod.POST)
+	@RequestMapping(value = "users/user", method = RequestMethod.POST)
 	public User create(@RequestBody User user) {
 		return userRepository.save(user);
 	}
 
-	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "users/user/{id}", method = RequestMethod.GET)
 	public User get(@PathVariable Long id) {
 		return userRepository.findOne(id);
 	} 
 
-	@RequestMapping(value = "user/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "users/user/{id}", method = RequestMethod.PUT)
 	public User update(@PathVariable Long id, @RequestBody User user) {
 		User existinguser = userRepository.findOne(id);
 		BeanUtils.copyProperties(user, existinguser);
 		return userRepository.save(existinguser);
 	}
 
-	@RequestMapping(value = "user/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "users/user/{id}", method = RequestMethod.DELETE)
 	public User delete(@PathVariable Long id) {
 		User user = userRepository.findOne(id); 
 		userRepository.delete(id);
