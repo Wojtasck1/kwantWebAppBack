@@ -36,14 +36,14 @@ public class ExpirationUtil {
 //		allCars.stream().forEach();
 
 		for (Car car : allCars) {
-			System.out.println(car.getOverview());
-			System.out.println(car.getInsurance());
-			System.out.println(getDateBackwords(0));
-			System.out.println(car.getInsurance().after(getDateBackwords(days)));
-			System.out.println(car.getInsurance().before(getDateBackwords(0)));
-			
-			System.out.println();
-			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//			System.out.println(car.getOverview());
+//			System.out.println(car.getInsurance());
+//			System.out.println(getDateBackwords(0));
+//			System.out.println(car.getInsurance().after(getDateBackwords(days)));
+//			System.out.println(car.getInsurance().before(getDateBackwords(0)));
+//			
+//			System.out.println();
+//			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			 if (car.getInsurance().after(getDateBackwords(days)) && car.getInsurance().after(getDateBackwords(0)) && !car.isUserAverOfInsuranceExpiration()) {
 				carsWitchExpiredInsurance.add(car);
 			}

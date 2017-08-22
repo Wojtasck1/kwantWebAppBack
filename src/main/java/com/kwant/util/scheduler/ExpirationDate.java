@@ -35,13 +35,19 @@ public class ExpirationDate {
 	private UserRepository userRepository;
 
 	@Value("${info.dni.do.konca.przegladu}")
-	Integer daysToOverviewEnd;
+	private Integer daysToOverviewEnd;
 	@Value("${info.dni.do.konca.ubezpieczenia}")
-	Integer daysToInsuranceEnd;
+	private Integer daysToInsuranceEnd;
 	@Value("${info.termin.kontroli.przebiegu}")
-	Integer daysToOilCheck;
+	private Integer daysToOilCheck;
 	@Value("${info.przebieg.do.kontroli}") 
-	Integer distanceToOilChange;
+	private Integer distanceToOilChange;
+	
+	@Value("${info.przebieg}") 
+	private String przegląd;
+	
+	@Value("${info.ubezpieczenie}") 
+	private String ubezpieczenie;
 
 	private List<Car> carsWitchExpiredOverview = new ArrayList<Car>();
 
@@ -52,9 +58,9 @@ public class ExpirationDate {
 
 	private String messageCreator(Car car, String message, String data) {
 		User user = userRepository.findOne(car.getUsersId()); 
-		return "W samochód o numerze rejestracyjnym :" + car.getPlates() + "/n" + " zakończy się " + message
-				+ "w ciągu najbliższych 7 dni dokładna data:" + data + "użytkownik samochodu:" + user.getName() + " "
-				+ user.getSurname();
+		return String.format("Samochód o numerze rejestracyjnym : %s zakończy się "
+				+ "%s w ciągu najbliższych 7 dni dokładna data %s użytkownik samochodu: %s %s", 
+				car.getPlates() , message , data , user.getName() , user.getSurname());
 	}
 
 	@Scheduled(cron = "* * * */1 * *")
@@ -62,7 +68,7 @@ public class ExpirationDate {
 		carsWitchExpiredOverview = expirationUtil.getCarsWitchExpireOverviev(daysToOverviewEnd);
 		for (Car car : carsWitchExpiredOverview) {
 			try {
-				mailService.sendMail(car, messageCreator(car, "przegląd", car.getOverview().toString()));
+				mailService.sendMail(car, messageCreator(car, przegląd, car.getOverview().toString()));
 				car.setUserAverOfOverviewExpiration(true);
 				carRepository.saveAndFlush(car);
 			} catch (MessagingException e) {
@@ -76,7 +82,7 @@ public class ExpirationDate {
 		carsWitchExpiredInsurence = expirationUtil.getCarsWitchExpireInsurance(daysToInsuranceEnd);
 		for (Car car : carsWitchExpiredInsurence) {
 			try {
-				mailService.sendMail(car, messageCreator(car, "ubezpieczenie", car.getInsurance().toString()));
+				mailService.sendMail(car, messageCreator(car, ubezpieczenie, car.getInsurance().toString()));
 				car.setUserAverOfInsuranceExpiration(true);
 				carRepository.saveAndFlush(car);
 			} catch (MessagingException e) {
@@ -89,9 +95,8 @@ public class ExpirationDate {
 	private void triggerOilCheck() {
 		carsToOilCheck = expirationUtil.getCarsWitchOldOil(distanceToOilChange);
 		for (Car car : carsToOilCheck) {
-			try {
-				mailService.sendMail(car,
-						"W samochodzie o nr " + car.getPlates() + " rejestracyjnych należy wymienić olej");
+			try { 
+				mailService.sendMail(car, String.format("W samochodzie o nr %s rejestracyjnych należy wymienić olej", car.getPlates()));
 				car.setUserAverOfOilChange(true);
 				carRepository.saveAndFlush(car);
 			} catch (MessagingException e) {
