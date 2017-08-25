@@ -320,3 +320,118 @@ VALUES
 'Sprawny',
 9,
 161296);
+
+INSERT INTO `kwantapp`.`carnotes`
+(`note_id`,
+`car_id`,
+`course`,
+`Description`,
+`createdate`)
+VALUES
+(
+1,
+1,
+150000,
+"wymiana oleju",
+'2017-07-25 00:00:00'
+);
+
+INSERT INTO `kwantapp`.`carnotes`
+(`note_id`,
+`car_id`,
+`course`,
+`Description`,
+`createdate`)
+VALUES
+(
+2,
+1,
+150000,
+"wymiana hamulcow",
+'2017-07-25 00:00:00'
+);
+
+INSERT INTO `kwantapp`.`carnotes`
+(`note_id`,
+`car_id`,
+`course`,
+`Description`,
+`createdate`)
+VALUES
+(
+3,
+1,
+150000,
+"wymiana sprzegla",
+'2017-07-25 00:00:00'
+);
+
+INSERT INTO `kwantapp`.`tasks`
+(`task_Id`,
+`name`,
+`description`,
+`status`,
+`close_date`,
+`create_date`,
+`customer`,
+`customer_Location`,
+`user_Id`
+)
+VALUES
+(1,
+"Task1",
+"Description task1",
+"open",
+'2017-09-05 00:00:00',
+'2017-09-05 00:00:00',
+"kwanttest",
+"Kielce",
+1
+);
+
+INSERT INTO `kwantapp`.`tasks`
+(`task_Id`,
+`name`,
+`description`,
+`status`,
+`close_date`,
+`create_date`,
+`customer`,
+`customer_Location`,
+`user_Id`
+)
+VALUES
+(2,
+"Task2",
+"Description task2",
+"open",
+'2017-09-05 00:00:00',
+'2017-09-05 00:00:00',
+"kwanttest",
+"Kielce",
+1
+);
+
+
+INSERT INTO `kwantapp`.`tasks`
+(`task_Id`,
+`name`,
+`description`,
+`status`,
+`close_date`,
+`create_date`,
+`customer`,
+`customer_Location`,
+`user_Id`
+)
+VALUES
+(3,
+"Task3",
+"Description task3",
+"open",
+'2017-09-05 00:00:00',
+'2017-09-05 00:00:00',
+"kwanttest",
+"Kielce",
+1
+);

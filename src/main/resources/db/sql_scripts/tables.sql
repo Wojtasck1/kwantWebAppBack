@@ -36,22 +36,41 @@ CREATE TABLE `users` (
 PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `notes` (
+CREATE TABLE `carnotes` (
    
 `note_id` int(11) NOT NULL,
   
-`card_id` int(11) DEFAULT NULL,
+`car_id` int(11) DEFAULT NULL,
   
 `course` varchar(10) DEFAULT NULL,
   
 `Description` varchar(1000) DEFAULT NULL,
   
 `createdate` datetime DEFAULT NULL,
-  
-`notes_id` decimal(19,0) NOT NULL,
-  
+   
 PRIMARY KEY (`note_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `tasks` (
+   
+`task_id` int(11) NOT NULL,
+  
+`name` varchar(100) DEFAULT NULL,
+  
+`description` varchar(1000) DEFAULT NULL,
+  
+`status` varchar(1000) DEFAULT NULL,
+  
+`create_date` datetime DEFAULT NULL,
+  
+`close_date` datetime DEFAULT NULL,
+ 
+`customer` varchar(1000) DEFAULT NULL,
+  
+`customer_location` varchar(100) DEFAULT NULL,
 
+`user_Id` int(6) DEFAULT NULL,
+ 
+PRIMARY KEY (`task_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

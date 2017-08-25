@@ -13,16 +13,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "notes")
+@Table(name = "carnotes")
 public class CarNote {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "notesId")
+	@Column(name = "note_Id")
 	private Long noteId; 
-	
-//	@Column(name = "cardId")
-//	private Long carId;
+
+//	@Column(name = "car_Id")
+//	private Long carId; 
 	
 	@Column(name = "course")
 	private String course;
@@ -31,19 +31,29 @@ public class CarNote {
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name="cardId")
+	@JoinColumn(name="car_Id")
 	private Car car;
 	
 	@Column(name = "createdate" ,columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdate;
+	
+	public CarNote(){};
 	 
-	public Car getCar() {
-		return car;
+//	public Car getCar() {
+//		return car;
+//	}
+//
+//	public void setCar(Car car) {
+//		this.car = car;
+//	}
+	
+	public Long getCarId() {
+		return carId;
 	}
 
-	public void setCar(Car car) {
-		this.car = car;
+	public void setCarId(Long carId) {
+		this.carId = carId;
 	}
 
 

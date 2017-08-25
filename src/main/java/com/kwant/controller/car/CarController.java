@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kwant.entity.car.Car;
+import com.kwant.entity.car.CarNote;
 import com.kwant.repository.car.CarRepository;
 
 @RestController
@@ -27,28 +28,37 @@ public class CarController {
 		return carRepository.findAll();
 	}
 
-	@RequestMapping(value = "car", method = RequestMethod.POST)
+	@RequestMapping(value = "cars", method = RequestMethod.POST)
 	public Car create(@RequestBody Car car) { 
 		return carRepository.save(car);
 	}
-
-	@RequestMapping(value = "car/{id}", method = RequestMethod.GET , produces = "application/json")
+	
+	@CrossOrigin 
+	@RequestMapping(value = "cars/{id}", method = RequestMethod.GET , produces = "application/json")
 	public Car get(@PathVariable Long id) {
 		return carRepository.findOne(id);
 	}
 
-	@RequestMapping(value = "car/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "cars/{id}", method = RequestMethod.PUT)
 	public Car update(@PathVariable Long id, @RequestBody Car car) {
 		Car existingCar = carRepository.findOne(id);
 		BeanUtils.copyProperties(car, existingCar);
 		return carRepository.save(existingCar);
 	}
 
-	@RequestMapping(value = "car/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "cars/{id}", method = RequestMethod.DELETE)
 	public Car delete(@PathVariable Long id) {
 		Car car = carRepository.findOne(id);
 		carRepository.delete(id);
 		return car;
 	}
+	
+//	@CrossOrigin 
+//	@RequestMapping(value = "cars/notes/{id}", method = RequestMethod.GET , produces = "application/json")
+//	public List<CarNote> getCarNotes(@PathVariable Long id) {
+//		Car car = carRepository.findOne(id);
+//		List<CarNote> notes = car.getNoteList();
+// 		return notes;
+//	}
 
 }

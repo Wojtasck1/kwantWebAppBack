@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -55,11 +56,11 @@ public class Car {
 	@Column(name = "is_user_aver_of_oil_change")
 	private boolean isUserAverOfOilChange;
 
-	@OneToMany(targetEntity = CarNote.class, cascade = CascadeType.ALL, mappedBy = "noteId")
+	@OneToMany(targetEntity = CarNote.class, mappedBy = "noteId") //, cascade = CascadeType.ALL)
 	private List<CarNote> noteList = new ArrayList<CarNote>();
 
 	public Car() {
-	}
+	};
 
 	public Car(Long carId, Date overview, Date insurance, Long course, String description, Long userId) {
 

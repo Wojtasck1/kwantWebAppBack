@@ -2,33 +2,51 @@ package com.kwant.entity.task;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tasks") 
+@Table(name = "tasks")
 public class Task {
 
 	@Id
 	@GeneratedValue
-	private Long task_Id; 
+	@Column(name = "task_Id")
+	private Long taskId;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "status")
 	private String status;
+	
+	@Column(name = "create_Date")
 	private Date createDate;
+	
+	@Column(name = "close_Date")
 	private Date closeDate;
+	
+	@Column(name = "customer")
 	private String customer;
+	
+	@Column(name = "customer_Location")
 	private String customerLocation;
+	
+	@Column(name = "user_Id")
 	private Integer userId;
 
-	public Long getTask_Id() { 
-		return task_Id;
+	public Long getTaskId() {
+		return taskId;
 	}
 
-	public void setTask_Id(Long task_Id) {
-		this.task_Id = task_Id;
+	public void setTask_Id(Long taskId) {
+		this.taskId = taskId;
 	}
 
 	public String getName() {

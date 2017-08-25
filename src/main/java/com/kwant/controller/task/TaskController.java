@@ -1,21 +1,21 @@
 package com.kwant.controller.task;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kwant.entity.task.Task;
 import com.kwant.repository.task.TaskRepository;
 
-@Controller
+@RestController
 @RequestMapping("api/v1/")
 public class TaskController {
 	
@@ -33,6 +33,12 @@ public class TaskController {
 	@RequestMapping(value = "tasks" , method = RequestMethod.GET , produces = "application/json") 
 	public @ResponseBody List<Task> getTask(){ 
 		return taskRepository.findAll(); 
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "tasks/{id}" , method = RequestMethod.GET , produces = "application/json") 
+	public Task get(@PathVariable Long id) {
+		return taskRepository.findOne(id);
 	}
 	
 //	@RequestMapping(value = "/saveOrUpdate" , method = RequestMethod.POST)
