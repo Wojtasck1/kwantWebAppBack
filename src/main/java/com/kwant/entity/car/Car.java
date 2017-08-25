@@ -56,7 +56,7 @@ public class Car {
 	@Column(name = "is_user_aver_of_oil_change")
 	private boolean isUserAverOfOilChange;
 
-	@OneToMany(targetEntity = CarNote.class, mappedBy = "noteId") //, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = CarNote.class, mappedBy = "carId")
 	private List<CarNote> noteList = new ArrayList<CarNote>();
 
 	public Car() {

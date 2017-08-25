@@ -21,8 +21,8 @@ public class CarNote {
 	@Column(name = "note_Id")
 	private Long noteId; 
 
-//	@Column(name = "car_Id")
-//	private Long carId; 
+	@Column(name = "car_Id")
+	private Long carId; 
 	
 	@Column(name = "course")
 	private String course;
@@ -31,7 +31,6 @@ public class CarNote {
 	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name="car_Id")
 	private Car car;
 	
 	@Column(name = "createdate" ,columnDefinition="DATETIME")
@@ -39,23 +38,6 @@ public class CarNote {
 	private Date createdate;
 	
 	public CarNote(){};
-	 
-//	public Car getCar() {
-//		return car;
-//	}
-//
-//	public void setCar(Car car) {
-//		this.car = car;
-//	}
-	
-	public Long getCarId() {
-		return carId;
-	}
-
-	public void setCarId(Long carId) {
-		this.carId = carId;
-	}
-
 
 	public Long getNoteId() { 
 		return noteId;

@@ -52,13 +52,4 @@ public class CarController {
 		carRepository.delete(id);
 		return car;
 	}
-	
-//	@CrossOrigin 
-//	@RequestMapping(value = "cars/notes/{id}", method = RequestMethod.GET , produces = "application/json")
-//	public List<CarNote> getCarNotes(@PathVariable Long id) {
-//		Car car = carRepository.findOne(id);
-//		List<CarNote> notes = car.getNoteList();
-// 		return notes;
-//	}
-
 }
