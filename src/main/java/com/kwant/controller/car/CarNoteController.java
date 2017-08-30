@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +36,11 @@ public class CarNoteController {
 		return carRepository.findOne(id);
 	} 
 	
-//	@RequestMapping(value = "carNotes/carId/{id}", method = RequestMethod.GET)
-//	public List<CarNote> getNotesByCarId(@PathVariable Long id) {
-//		return carRepository.getNoteByCardId(id);
-//	} 
+	@CrossOrigin 
+	@RequestMapping(value = "carNotes/carId/{id}", method = RequestMethod.GET)
+	public List<CarNote> getNotesByCarId(@PathVariable Long id) {
+		return carRepository.getNoteByCarId(id);
+	} 
 
 	@RequestMapping(value = "carNotes/{id}", method = RequestMethod.PUT)
 	public CarNote update(@PathVariable Long id, @RequestBody CarNote note) {

@@ -8,6 +8,6 @@ import com.kwant.entity.car.CarNote;
 
 public interface CarNoteRepository extends JpaRepository<CarNote, Long> {
 	
-//	public List<CarNote> getNoteByCardId(Long carId);
+	public List<CarNote> getNoteByCarId(Long carId); 
 
 } 

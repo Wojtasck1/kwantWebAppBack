@@ -21,6 +21,10 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+//	UserController userConrtoller(UserRepository userRepository){
+//		
+//	}
+	
 	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "users", method = RequestMethod.GET , produces = "application/json")
 	public List<User> list() {
@@ -32,6 +36,7 @@ public class UserController {
 		return userRepository.save(user);
 	}
 
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "users/{id}", method = RequestMethod.GET)
 	public User get(@PathVariable Long id) {
 		return userRepository.findOne(id);

@@ -39,6 +39,7 @@ public class CarController {
 		return carRepository.findOne(id);
 	}
 
+	@CrossOrigin 
 	@RequestMapping(value = "cars/{id}", method = RequestMethod.PUT)
 	public Car update(@PathVariable Long id, @RequestBody Car car) {
 		Car existingCar = carRepository.findOne(id);

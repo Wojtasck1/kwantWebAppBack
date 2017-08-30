@@ -63,7 +63,7 @@ public class ExpirationDate {
 				car.getPlates() , message , data , user.getName() , user.getSurname());
 	}
 
-	@Scheduled(cron = "* * * */1 * *")
+//	@Scheduled(cron = "* * * */1 * *")
 	private void triggerOverviewDateCheck() {
 		carsWitchExpiredOverview = expirationUtil.getCarsWitchExpireOverviev(daysToOverviewEnd);
 		for (Car car : carsWitchExpiredOverview) {
@@ -77,7 +77,7 @@ public class ExpirationDate {
 		}
 	}
 
-	@Scheduled(cron = "* * * */1 * *")
+//	@Scheduled(cron = "* * * */1 * *")
 	private void triggerCourseCheck() { 
 		carsWitchExpiredInsurence = expirationUtil.getCarsWitchExpireInsurance(daysToInsuranceEnd);
 		for (Car car : carsWitchExpiredInsurence) {
@@ -91,7 +91,7 @@ public class ExpirationDate {
 		}
 	}
 
-	@Scheduled(cron = "* * * */1 * *")
+//	@Scheduled(cron = "* * * */1 * *")
 	private void triggerOilCheck() {
 		carsToOilCheck = expirationUtil.getCarsWitchOldOil(distanceToOilChange);
 		for (Car car : carsToOilCheck) {
