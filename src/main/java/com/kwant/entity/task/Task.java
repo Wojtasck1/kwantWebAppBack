@@ -16,28 +16,28 @@ public class Task {
 	@GeneratedValue
 	@Column(name = "task_Id")
 	private Long taskId;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "status")
 	private String status;
-	
+
 	@Column(name = "create_Date")
 	private Date createDate;
-	
+
 	@Column(name = "close_Date")
 	private Date closeDate;
-	
+
 	@Column(name = "customer")
 	private String customer;
-	
+
 	@Column(name = "customer_Location")
 	private String customerLocation;
-	
+
 	@Column(name = "user_Id")
 	private Integer userId;
 

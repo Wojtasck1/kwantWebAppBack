@@ -21,17 +21,13 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
-//	UserController userConrtoller(UserRepository userRepository){
-//		
-//	}
-	
 	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "users", method = RequestMethod.GET , produces = "application/json")
 	public List<User> list() {
 		return userRepository.findAll();
 	}
 
-	@RequestMapping(value = "users/", method = RequestMethod.POST)
+	@RequestMapping(value = "users", method = RequestMethod.POST)
 	public User create(@RequestBody User user) {
 		return userRepository.save(user);
 	}
