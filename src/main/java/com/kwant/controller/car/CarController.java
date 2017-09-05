@@ -33,13 +33,13 @@ public class CarController {
 		return carRepository.save(car);
 	}
 	
-	@CrossOrigin 
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "cars/{id}", method = RequestMethod.GET , produces = "application/json")
 	public Car get(@PathVariable Long id) {
 		return carRepository.findOne(id);
 	}
 
-	@CrossOrigin 
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "cars/{id}", method = RequestMethod.PUT)
 	public Car update(@PathVariable Long id, @RequestBody Car car) {
 		Car existingCar = carRepository.findOne(id);

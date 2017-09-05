@@ -28,10 +28,11 @@ public class HolidayController {
 		return holidaysRepository.findAll();
 	}
 
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "holidays", method = RequestMethod.POST)
 	public Holiday create(@RequestBody Holiday holiday) {
 		return holidaysRepository.save(holiday);
-	} 
+	}
 
 	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "holidays/{id}", method = RequestMethod.GET)
